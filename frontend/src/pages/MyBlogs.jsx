@@ -1,15 +1,15 @@
-import React, { useContext, useEffect, useState } from 'react'
-import HomePosts from '../components/HomePosts'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import { useContext } from 'react'
+import { UserContext } from '../context/UserContext'
 import axios from 'axios'
 import { URL } from '../url'
-import { Link, useLocation } from 'react-router-dom'
+import HomePosts from '../components/HomePosts'
+import { Link } from 'react-router-dom'
 import Loader from '../components/Loader'
-import { UserContext } from '../context/UserContext'
 
-const Home = () => {
-
+const MyBlogs = () => {
     const { search } = useLocation()
     //console.log(search)
     const [posts, setPosts] = useState([])
@@ -21,7 +21,7 @@ const Home = () => {
     const fetchPosts = async () => {
         setLoader(true)
         try {
-            const res = await axios.get(URL + "/api/posts/" + search)
+            const res = await axios.get(URL + "/api/posts/user/" + user._id)
             console.log(res.data)
             setPosts(res.data)
             if (res.data.length === 0) {
@@ -42,20 +42,21 @@ const Home = () => {
         fetchPosts()
     }, [search])
     return (
-        <>
+        <div>
             <Navbar />
-            <div className='px-14 py-10 md:px-[200px] min-h-[80vh]'>
-                {loader ? <div className='h-[40vh] flex-justify-center items-center'><Loader /></div> : !noResults ? posts.map((post) => (
-                    <>
-                        <Link to={user ? `/posts/post/${post._id}` : "/login"}>
-                            <HomePosts key={post._id} post={post} />
-                        </Link>
-                    </>
-                )) : <h3 className='text-center font-bold mt-16'> No Posts Available</h3>}
+            <div className="px-8 md:px-[200px] min-h-[80vh]">
+            {loader ? <div className='h-[40vh] flex-justify-center items-center'><Loader /></div> : !noResults ? posts.map((post) => (
+                <>
+                    <Link to={user ? `/posts/post/${post._id}` : "/login"}>
+                        <HomePosts key={post._id} post={post} />
+                    </Link>
+                </>
+            )) : <h3 className='text-center font-bold mt-16'> No Posts Available </h3>}
             </div>
             <Footer />
-        </>
+        </div>
     )
 }
 
-export default Home
+export default MyBlogs
+
