@@ -51,7 +51,7 @@ const MyBlogs = () => {
                         <HomePosts key={post._id} post={post} />
                     </Link>
                 </>
-            )) : <h3 className='text-center font-bold mt-16'> No posts available available </h3>}
+            )) : <h3 className='text-center font-bold mt-16'> No posts available  </h3>}
             </div>
             <Footer />
         </div>
