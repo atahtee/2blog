@@ -100,6 +100,7 @@ const PostDetails = () => {
          {user?._id===post?.userId && <div className="flex items-center justify-center space-x-2">
             <p className="cursor-pointer" onClick={()=>navigate("/edit/"+postId)} ><BiEdit/></p>
             <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete/></p>
+            <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete/></p>
          </div>}
         </div>
         <div className="flex items-center justify-between mt-2 md:mt-4">
