@@ -113,14 +113,14 @@ const PostDetails = () => {
         <img src={IF+post.photo} className="w-full  mx-auto mt-8" alt=""/>
          <p className="mx-auto mt-8">{post.desc}</p>
          <div className="flex items-center mt-8 space-x-4 font-semibold">
-          <p>Categories:</p>
+          {/* <p>Categories:</p> */}
           <div className="flex justify-center items-center space-x-2">
-          {post.categories?.map((c,i)=>(
+          {/* {post.categories?.map((c,i)=>(
             <>
             <div key={i} className="bg-gray-300 rounded-lg px-3 py-1">{c}</div>
             </>
             
-          ))}
+          ))} */}
             
           </div>
          </div>

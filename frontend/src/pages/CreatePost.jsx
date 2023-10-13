@@ -35,7 +35,7 @@ const CreatePost = () => {
             desc,
             username:user.username,
             userId:user._id,
-            categories:cats
+            // categories:cats
         }
 
         if(file){
@@ -81,7 +81,7 @@ const CreatePost = () => {
                         </div>
 
                         {/* categories */}
-                        <div className='flex px-4 mt-3'>
+                        {/* <div className='flex px-4 mt-3'>
                             {cats?.map((c,i) => (
                                 <div key={i} className='flex justify-center items-center space-x-2 mr-4 bg-gray-200 px-2 py-1 rounded-md'>
                                     <p>{c}</p>
@@ -89,7 +89,7 @@ const CreatePost = () => {
                                 </div>
                             ))}
 
-                        </div>
+                        </div> */}
                     </div>
                     <textarea onChange={(e)=>setDesc(e.target.value)} rows={15} cols={30} className='px-4 py-2 outline-none' placeholder='Enter post description' />
                     <button onClick={handleCreate} className='bg-black w-full md:w-[20%] mx-auto text-white font-semibold px-4 py-2 md:text-xl text-lg'>Create</button>

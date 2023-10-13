@@ -22,8 +22,8 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    categories:{
-        type: Array,
-    }
+    // categories:{
+    //     type: Array,
+    // }
 },{timestamps:true})
 module.exports=mongoose.model("Post", PostSchema)

@@ -24,7 +24,7 @@ const EditPost = () => {
             setTitle(res.data.title)
             setDesc(res.data.desc)
             setFile(res.data.photo)
-            setCats(res.data.categories)
+            // setCats(res.data.categories)
         }
         catch(error){
             console.log(error)
@@ -38,7 +38,7 @@ const EditPost = () => {
             desc,
             username:user.username,
             userId:user._id,
-            categories:cats
+            // categories:cats
         }
 
         if(file){

@@ -20,7 +20,7 @@ const HomePosts = ({post}) => {
             <p>{new Date(post.updatedAt).toString().slice(16,24)}</p>
           </div>
         </div>
-        <p className='text-sm md:text-lg'>{post.desc.slice(0,200)+"...Read more"}</p>
+        <p className='text-sm md:text-lg'><span style={{fontWeight:'200'}}>{post.desc.slice(0,200)}</span>+ <span style={{fontWeight:'600'}}>...Read more</span></p>
       </div>
     </div>
    
