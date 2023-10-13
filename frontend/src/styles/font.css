@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Menlo Regular';
+    src: url('../fonts/Menlo-Regular.ttf') format('truetype');;
+}
+
+.custom-font {
+    font-family: 'MenloRegular', sans-serif;
+    /* You can also specify font size, weight, or others here */
+  }
