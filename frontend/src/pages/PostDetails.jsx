@@ -9,6 +9,7 @@ import { URL,IF } from "../url"
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../context/UserContext"
 import Loader from "../components/Loader"
+import '../styles/font.css'
 
 
 const PostDetails = () => {
@@ -96,10 +97,9 @@ const PostDetails = () => {
         <Navbar/>
         {loader?<div className="h-[80vh] flex justify-center items-center w-full"><Loader/></div>:<div className="px-8 md:px-[200px] mt-8">
         <div className="flex justify-between items-center">
-         <h1 className="text-2xl font-bold text-black md:text-3xl">{post.title}</h1>
+         <h1 className="text-2xl font-bold text-red md:text-3xl">{post.title}</h1>
          {user?._id===post?.userId && <div className="flex items-center justify-center space-x-2">
             <p className="cursor-pointer" onClick={()=>navigate("/edit/"+postId)} ><BiEdit/></p>
-            <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete/></p>
             <p className="cursor-pointer" onClick={handleDeletePost}><MdDelete/></p>
          </div>}
         </div>
