@@ -1,64 +1,39 @@
-const express = require('express');
-const app = express()
-const mongoose = require("mongoose")
-const dotenv = require('dotenv')
+const express = require('express')
+const mongoose = require('mongoose')
 const cors = require('cors')
-const multer = require('multer')
-const cookieParser=require('cookie-parser')
-const path = require('path')
-const authRoute = require('./routes/auth')
-const userRoute = require('./routes/users')
-const postRoute = require('./routes/posts')
-const commentRoute = require('./routes/comments')
+//const RegisterModel = require('./models/Register')
 
-//database
-const connectDB=async()=>{
-    try {
-        await mongoose.connect(process.env.MONGO_URL)
-        console.log("Database has been connected successfully")
-    } catch (err) {
-       console.log(err) 
-    }
-}
-
-//middleware
-dotenv.config()
-app.use(express.json())
-app.use("/images",express.static(path.join(__dirname,"/images")))
+const app = express()
 app.use(cors(
     {
-    origin: ["https://tublog.vercel.app"],
-    methods: ["POST", "GET"],
-    credentials:true}
-    ))
-app.use(cookieParser())
-app.use('/api/auth', authRoute)
-app.use('/api/users', userRoute)
-app.use('/api/posts', postRoute)
-app.use('/api/comments', commentRoute)
+        origin: ["https://deploy-mern-frontend.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
+app.use(express.json())
+
+mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
+
 
 app.get("/", (req, res) => {
-    res.json("Hello")
+    res.json("Hello");
+})
+app.post('/register', (req, res) => {
+    const {name, email, password} = req.body;
+    RegisterModel.findOne({email: email})
+    .then(user => {
+        if(user) {
+            res.json("Already have an account")
+        } else {
+            RegisterModel.create({name: name, email: email, password: password})
+            .then(result => res.json(result))
+            .catch(err => res.json(err))
+        }
+    }).catch(err => res.json(err))
 })
 
-//image upload
-const storage = multer.diskStorage({
-   destination:(req,file,fn)=>{
-    fn(null,"images")
-   } ,
-   filename:(req,file,fn)=>{
-     fn(null,req.body.img)
-    // fn(null,"image1.jpg")
-   }
-})
 
-const upload=multer({storage:storage})
-app.post("/api/upload",upload.single("file"),(req,res)=>{
-    res.status(200).json("Image has been uploaded successfully!")
+app.listen(3001, () => {
+    console.log("Server is Running")
 })
-
-app.listen(process.env.PORT, ()=>{
-    connectDB()
-    console.log("App is running on port " + process.env.PORT)
-})
-
