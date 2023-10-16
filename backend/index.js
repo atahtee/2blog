@@ -1,39 +1,64 @@
-const express = require('express')
-const mongoose = require('mongoose')
-const cors = require('cors')
-//const RegisterModel = require('./models/Register')
-
+const express = require('express');
 const app = express()
+const mongoose = require("mongoose")
+const dotenv = require('dotenv')
+const cors = require('cors')
+const multer = require('multer')
+const cookieParser=require('cookie-parser')
+const path = require('path')
+const authRoute = require('./routes/auth')
+const userRoute = require('./routes/users')
+const postRoute = require('./routes/posts')
+const commentRoute = require('./routes/comments')
+
+//database
+const connectDB=async()=>{
+    try {
+        await mongoose.connect("mongodb+srv://atati:G1QNRYf1CXVblX3c@2blog.282w61c.mongodb.net/?retryWrites=true&w=majority")
+        console.log("Database has been connected successfully")
+    } catch (err) {
+       console.log(err) 
+    }
+}
+
+//middleware
+dotenv.config()
+app.use(express.json())
+app.use("/images",express.static(path.join(__dirname,"/images")))
 app.use(cors(
     {
-        origin: ["https://deploy-mern-frontend.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-));
-app.use(express.json())
+    origin: ["https://2blog-frontend.vercel.app/"],
+    methods: ["POST", "GET"],
+    credentials:true}
+    ))
+app.use(cookieParser())
+app.use('/api/auth', authRoute)
+app.use('/api/users', userRoute)
+app.use('/api/posts', postRoute)
+app.use('/api/comments', commentRoute)
 
-mongoose.connect('mongodb+srv://yousaf:test123@cluster0.g4i5dey.mongodb.net/test?retryWrites=true&w=majority');
+// app.get("/", (req, res) => {
+//     res.json("Hello")
+// })
 
+// //image upload
+// const storage = multer.diskStorage({
+//    destination:(req,file,fn)=>{
+//     fn(null,"images")
+//    } ,
+//    filename:(req,file,fn)=>{
+//      fn(null,req.body.img)
+//     // fn(null,"image1.jpg")
+//    }
+// })
 
-app.get("/", (req, res) => {
-    res.json("Hello");
+// const upload=multer({storage:storage})
+// app.post("/api/upload",upload.single("file"),(req,res)=>{
+//     res.status(200).json("Your image has been successfully!")
+// })
+
+app.listen(process.env.PORT, ()=>{
+    connectDB()
+    console.log("App is running on port " + process.env.PORT)
 })
-app.post('/register', (req, res) => {
-    const {name, email, password} = req.body;
-    RegisterModel.findOne({email: email})
-    .then(user => {
-        if(user) {
-            res.json("Already have an account")
-        } else {
-            RegisterModel.create({name: name, email: email, password: password})
-            .then(result => res.json(result))
-            .catch(err => res.json(err))
-        }
-    }).catch(err => res.json(err))
-})
 
-
-app.listen(3001, () => {
-    console.log("Server is Running")
-})
