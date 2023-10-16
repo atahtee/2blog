@@ -1,6 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom"
 import Comment from "../components/Comment"
-import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import {BiEdit} from 'react-icons/bi'
 import {MdDelete} from 'react-icons/md'
@@ -137,7 +136,6 @@ const PostDetails = () => {
           <button onClick={postComment} className="bg-black text-sm text-white px-2 py-2 md:w-[20%] mt-4 md:mt-0">Add Comment</button>
          </div>
         </div>}
-        <Footer/>
     </div>
   )
 }

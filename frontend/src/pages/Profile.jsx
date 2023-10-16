@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import ProfilePosts from '../components/ProfilePosts'
 import axios from 'axios'
 import { URL } from '../url'
@@ -90,7 +89,6 @@ const Profile = () => {
 
                 </div>
             </div>
-            <Footer />
         </div>
     )
 }

@@ -14,7 +14,7 @@ const commentRoute = require('./routes/comments')
 //database
 const connectDB=async()=>{
     try {
-        await mongoose.connect("mongodb+srv://atati:G1QNRYf1CXVblX3c@2blog.282w61c.mongodb.net/?retryWrites=true&w=majority")
+        await mongoose.connect(process.env.MONGO_URL)
         console.log("Database has been connected successfully")
     } catch (err) {
        console.log(err) 
@@ -27,7 +27,7 @@ app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
 app.use(cors(
     {
-    origin: ["https://2blog-frontend.vercel.app/"],
+    origin: ["http://localhost:5173"],
     methods: ["POST", "GET"],
     credentials:true}
     ))
@@ -41,21 +41,21 @@ app.use('/api/comments', commentRoute)
 //     res.json("Hello")
 // })
 
-// //image upload
-// const storage = multer.diskStorage({
-//    destination:(req,file,fn)=>{
-//     fn(null,"images")
-//    } ,
-//    filename:(req,file,fn)=>{
-//      fn(null,req.body.img)
-//     // fn(null,"image1.jpg")
-//    }
-// })
+//image upload
+const storage = multer.diskStorage({
+   destination:(req,file,fn)=>{
+    fn(null,"images")
+   } ,
+   filename:(req,file,fn)=>{
+     fn(null,req.body.img)
+    // fn(null,"image1.jpg")
+   }
+})
 
-// const upload=multer({storage:storage})
-// app.post("/api/upload",upload.single("file"),(req,res)=>{
-//     res.status(200).json("Your image has been successfully!")
-// })
+const upload=multer({storage:storage})
+app.post("/api/upload",upload.single("file"),(req,res)=>{
+    res.status(200).json("Your image has been successfully!")
+})
 
 app.listen(process.env.PORT, ()=>{
     connectDB()

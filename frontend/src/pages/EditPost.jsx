@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import { ImCross } from 'react-icons/im'
 import axios from 'axios'
 import { URL } from '../url'
@@ -111,7 +110,6 @@ const EditPost = () => {
                     <button onClick={handleUpdate} className='bg-black w-full md:w-[20%] mx-auto text-white font-semibold px-4 py-2 md:text-xl text-lg'>Update</button>
                 </form>
             </div>
-            <Footer />
         </div>
     )
 }

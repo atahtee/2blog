@@ -24,8 +24,6 @@ const App = () => {
         <Route exact path="/profile/:id" element={<Profile />} />
       </Routes>
     </UserContextProvider>
-
-
   )
 }
 

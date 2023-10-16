@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import HomePosts from '../components/HomePosts'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import axios from 'axios'
 import { URL } from '../url'
 import { Link, useLocation } from 'react-router-dom'
@@ -41,11 +40,12 @@ const Home = () => {
     useEffect(() => {
         fetchPosts()
     }, [search])
+    const sortedPosts = [...posts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     return (
         <>
             <Navbar />
-            <div className='px-14 py-10 md:px-[200px] min-h-[80vh]'>
-                {loader ? <div className='h-[40vh] flex-justify-center items-center'><Loader /></div> : !noResults ? posts.map((post) => (
+            <div className='px-14 py-10 md:px-[200px] min-h-[80vh] bg-gray-100'>
+                {loader ? <div className='h-[40vh] flex-justify-center items-center'><Loader /></div> : !noResults ? sortedPosts.map((post) => (
                     <>
                         <Link to={user ? `/posts/post/${post._id}` : "/login"}>
                             <HomePosts key={post._id} post={post} />
@@ -53,7 +53,6 @@ const Home = () => {
                     </>
                 )) : <h3 className='text-center font-bold mt-16'> No Posts Available</h3>}
             </div>
-            <Footer />
         </>
     )
 }

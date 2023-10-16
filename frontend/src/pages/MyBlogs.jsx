@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
 import { useContext } from 'react'
 import { UserContext } from '../context/UserContext'
 import axios from 'axios'
@@ -53,7 +52,6 @@ const MyBlogs = () => {
                 </>
             )) : <h3 className='text-center font-bold mt-16'> No posts available  </h3>}
             </div>
-            <Footer />
         </div>
     )
 }
