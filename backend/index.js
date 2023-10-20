@@ -11,11 +11,12 @@ const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
 const commentRoute = require('./routes/comments')
 
+//AddType text/javascript .js
 //database
 const connectDB=async()=>{
     try {
         await mongoose.connect(process.env.MONGO_URL)
-        console.log("Database has been connected successfully")
+        console.log("Database has already been connected successfully")
     } catch (err) {
        console.log(err) 
     }
