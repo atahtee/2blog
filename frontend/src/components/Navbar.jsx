@@ -20,7 +20,7 @@ const Navbar = () => {
   const {user} = useContext(UserContext);
   return (
     <div className='flex items-center justify-between px-6 md:px-[200px] py-4 bg-gray-100'>
-  <h1 className='text-lg md:text-xl font-extrabold'><Link to="/">BlogWise</Link></h1>
+  <h1 className='text-lg md:text-xl font-extrabold'><Link to="/">blogwise</Link></h1>
   {path === "/" && (
     <div className='flex items-center space-x-2'>
       <p onClick={() => navigate(prompt ? `?search=${prompt}` : navigate("/"))} className='cursor-pointer'>
@@ -28,7 +28,7 @@ const Navbar = () => {
       </p>
       <input
         onChange={(e) => setPrompt(e.target.value)}
-        className='outline-none px-3 py-1 rounded-md border border-gray-300' // Apply border and border-radius styles
+        className='outline-none px-3 py-1 rounded-md border border-gray-300' 
         placeholder='Search a post'
         type='text'
       />
