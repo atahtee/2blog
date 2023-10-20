@@ -28,7 +28,7 @@ app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
 app.use(cors(
     {
-    origin: ["https://2blog.vercel.app/"],
+    origin: '*',
     methods: ["POST", "GET"],
     credentials:true}
     ))
