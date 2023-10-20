@@ -16,7 +16,7 @@ const commentRoute = require('./routes/comments')
 const connectDB=async()=>{
     try {
         await mongoose.connect(process.env.MONGO_URL)
-        console.log("Database has already been connected successfully")
+        console.log("Database has been connected successfully")
     } catch (err) {
        console.log(err) 
     }
@@ -28,7 +28,7 @@ app.use(express.json())
 app.use("/images",express.static(path.join(__dirname,"/images")))
 app.use(cors(
     {
-    origin: ["http://localhost:5174"],
+    origin: ["https://2blog.vercel.app/"],
     methods: ["POST", "GET"],
     credentials:true}
     ))
