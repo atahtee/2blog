@@ -20,7 +20,7 @@ const Navbar = () => {
   const {user} = useContext(UserContext);
   return (
     <div className='flex items-center justify-between px-6 md:px-[200px] py-4 bg-gray-100'>
-  <h1 className='text-lg md:text-xl font-extrabold'><Link to="/">blogwise</Link></h1>
+  <h1 className='text-lg md:text-xl font-extrabold'><Link to="/">2blog</Link></h1>
   {path === "/" && (
     <div className='flex items-center space-x-2'>
       <p onClick={() => navigate(prompt ? `?search=${prompt}` : navigate("/"))} className='cursor-pointer'>
