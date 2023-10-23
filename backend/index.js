@@ -29,7 +29,7 @@ app.use("/images",express.static(path.join(__dirname,"/images")))
 app.use(cors(
     {
     origin: 'https://2blog-atahtee.vercel.app',
-    methods: ["POST", "GET"],
+    methods: ["POST", "GET", "DELETE"],
     credentials:true}
     ))
 app.use(cookieParser())
