@@ -41,8 +41,8 @@ const CreatePost = () => {
 
         if (!file) {
             // If the user hasn't selected an image, use a random image URL 
-            const randomImageUrl = 'http://localhost:5000/images/random1.jpg';
-            post.photo = randomImageUrl;
+           // const randomImageUrl = 'http://localhost:5000/images/random1.jpg';
+            //post.photo = randomImageUrl;
         } else {
             const data = new FormData();
             const filename = Date.now() + file.name;
