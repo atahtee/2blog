@@ -51,10 +51,11 @@ const Home = () => {
                             <HomePosts key={post._id} post={post} />
                         </Link>
                     </>
-                )) : <h3 className='text-center font-bold mt-16'> No Posts Available</h3>}
+                )) : <h3 className='text-center font-bold mt-16'> No Posts Available </h3>}
             </div>
         </>
     )
 }
 
 export default Home
+

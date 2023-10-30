@@ -17,6 +17,8 @@ const ProfilePosts = ({ p }) => {
           </h1>
           <div className='flex mb-2 text-sm font-semibold text-gray-500 items-center justify-between md:mb-4'>
             <p>@{p.username}</p>
+                      {/* <i className='fa fa-eye text-blue-500'></i> */}
+
             <div className='flex space-x-2 text-sm'>
               <p>{new Date(p.updatedAt).toString().slice(0, 15)}</p>
               <p>{new Date(p.updatedAt).toString().slice(16, 24)}</p>

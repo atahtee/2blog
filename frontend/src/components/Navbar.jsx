@@ -29,7 +29,7 @@ const Navbar = () => {
       <input
         onChange={(e) => setPrompt(e.target.value)}
         className='outline-none px-3 py-1 rounded-md border border-gray-300' 
-        placeholder='Search a post'
+        placeholder='Search for a post'
         type='text'
       />
     </div>

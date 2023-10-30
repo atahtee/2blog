@@ -1,32 +1,36 @@
-import React from 'react'
-import {IF} from '../url'
-import '../styles/font.css'
+import React, { useEffect, useState } from 'react';
+import { IF } from '../url';
+import '../styles/font.css';
 
+const HomePosts = ({ post }) => {
 
-const HomePosts = ({post}) => {
   return (
     <div className='w-full flex mt-8 space-x-4 '>
+
       {/*left */}
-      <div className='w-[35%] h-[200px] flex justify-center items-center'>
-        <img src={IF+post.photo} alt="" className='h-full w-full object-cover' />
+      <div className='w-[35%] h-[200px] flex justify-center items-center border border-gray-200 p-4 rounded-lg shadow-lg bg-white transition transform hover:scale-105'>
+        <img src={IF + post.photo} alt="" className='h-full w-full object-cover' />
       </div>
+
       {/*right*/}
-      <div className='flex flex-col w-[65%]'>
-        <h1 className='text-xl font-bold md:mb-2 mb-1 md:text-2xl'>
-          {post.title}
-        </h1>
-        <div className='flex mb-2 text-sm  font-semibold text-gray-500 items-center justify-between md:mb-4'>
-          <p>@{post.username}</p>
-          <div className='flex space-x-2 text-sm'>
-            <p>{new Date(post.updatedAt).toString().slice(0,15)}</p>
-            <p>{new Date(post.updatedAt).toString().slice(16,24)}</p>
-          </div>
+      <div className='flex flex-col w-[65%] border border-gray-200 p-4 rounded-lg shadow-lg bg-white transition transform hover:scale-105'>
+        <div className='flex items-center justify-between'>
+          <h1 className='text-2xl font-bold mb-2'>
+            {post.title}
+          </h1>
+          {/* <i className='fa fa-eye text-blue-500'></i> */}
+          {/* <p>{viewCount}</p> */}
         </div>
-        <p className='text-sm  md:text-lg'><span style={{fontWeight:'200'}}>{post.desc.slice(0,200)}</span>+ <span style={{fontWeight:'600'}}>...Read more</span></p>
+        <div className='flex items-center justify-between mb-2 text-gray-500 text-sm'>
+          <p>@{post.username}</p>
+          <p>{new Date(post.updatedAt).toDateString()}</p>
+        </div>
+        <p className='text-sm md:text-base text-gray-700'>
+          {post.desc.slice(0, 200)}<span className='text-blue-500 cursor-pointer hover:underline'>...Read more</span>
+        </p>
       </div>
     </div>
-   
-  )
-}
+  );
+};
 
-export default HomePosts
+export default HomePosts;
