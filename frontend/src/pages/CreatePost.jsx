@@ -112,7 +112,7 @@ const CreatePost = () => {
                     onClick={() => deleteCategory(index)}
                     className="text-red-600 cursor-pointer"
                   >
-                    Delete
+                   Delete
                   </button>
                 </div>
               ))}
